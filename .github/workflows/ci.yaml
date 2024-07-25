@@ -1,0 +1,29 @@
+name: "Increase cache"
+
+on:
+  workflow_dispatch:
+    inputs:
+      nuke:
+        description: "nuke"
+        type: boolean
+        default: false
+
+jobs:
+  build_android:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup cache
+        uses: actions/cache@v4
+        with:
+          path:
+            cached
+          key: cached
+      - name: Add file with name
+        run: |
+          TS=$(date +%Y%m%d%H%M)
+          touch cached/$TS
+      - name: List files
+        run: |
+          ls -l cached
