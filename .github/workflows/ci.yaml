@@ -22,6 +22,7 @@ jobs:
           key: cached
       - name: Add file with name
         run: |
+          mkdir -p cached
           TS=$(date +%Y%m%d%H%M)
           touch cached/$TS
       - name: List files
